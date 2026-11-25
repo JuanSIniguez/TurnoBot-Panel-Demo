@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132a2a">
+  <meta name="description" content="Prototipo navegable del panel de reservas TurnoBot.">
+  <title>TurnoBot · Agenda de demostración</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span>turno<span class="brand-accent">bot</span><small>ESTUDIO DEMO</small></span></div>
+      <div class="workspace"><span class="workspace-icon">EA</span><span><strong>Estudio Alma</strong><small>Espacio de trabajo</small></span><span class="workspace-chevron">⌄</span></div>
+      <div class="nav-caption">ESPACIO DE TRABAJO</div>
+      <nav class="side-nav">
+        <button class="nav-item active" type="button" data-page="agenda"><span class="nav-icon">▦</span> Agenda <span class="nav-shortcut">01</span></button>
+        <button class="nav-item" type="button" data-page="requests"><span class="nav-icon">◫</span> Solicitudes <span class="nav-badge">2</span></button>
+        <button class="nav-item" type="button" data-page="services"><span class="nav-icon">◇</span> Servicios</button>
+        <button class="nav-item" type="button" data-page="team"><span class="nav-icon">♧</span> Profesionales</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="sidebar-note"><span class="note-dot"></span><strong>Prototipo interactivo</strong><p>Datos ficticios para explorar la experiencia del panel.</p></div><div class="profile"><span class="avatar">MO</span><span><strong>Marina Ortiz</strong><small>Administradora</small></span><span class="profile-menu">···</span></div></div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+      <div class="topbar"><span class="breadcrumb">Estudio Alma <span>/</span> <strong id="breadcrumb-title">Agenda</strong></span><div class="topbar-right"><span class="demo-pill">● MODO DEMO</span><span class="top-avatar">MO</span></div></div>
+
+      <section class="page active" id="page-agenda" aria-labelledby="agenda-title">
+        <div class="page-heading"><div><div class="eyebrow">OPERACIÓN DIARIA <span class="eyebrow-line"></span></div><h1 id="agenda-title">La agenda, de un vistazo<span class="period">.</span></h1><p>Todos los profesionales y sus turnos, en un solo lugar.</p></div><button class="primary-button" type="button" id="new-booking">＋ Nueva reserva</button></div>
+        <div class="overview"><div class="overview-item"><span class="overview-icon peach">▦</span><div><strong id="stat-bookings">08</strong><span>Reservas del día</span></div></div><div class="overview-item"><span class="overview-icon mint">♧</span><div><strong>03</strong><span>Profesionales activos</span></div></div><div class="overview-item"><span class="overview-icon lavender">◫</span><div><strong>02</strong><span>Solicitudes por revisar</span></div></div><div class="overview-aside">MIÉRCOLES, 25 NOV <span>↗</span></div></div>
+        <div class="agenda-toolbar"><div class="date-controls"><button class="icon-button" id="prev-day" aria-label="Fecha anterior">‹</button><button class="today-button" id="today" type="button">Hoy</button><button class="icon-button" id="next-day" aria-label="Fecha siguiente">›</button><strong id="current-date">Miércoles, 25 de noviembre</strong></div><div class="toolbar-actions"><label class="filter-wrap"><span>♧</span><select id="professional-filter" aria-label="Filtrar profesional"><option value="all">Todos los profesionales</option></select></label><div class="segmented" aria-label="Vista de agenda"><button class="selected" data-view="day" type="button">Día</button><button data-view="week" type="button">Semana</button></div></div></div>
+        <div class="agenda-note"><span>✦</span> Los turnos y horarios que ves son ficticios. Esta pantalla muestra cómo podría funcionar TurnoBot.</div>
+        <div id="calendar" aria-live="polite"></div>
+      </section>
+
+      <section class="page" id="page-requests" aria-labelledby="requests-title"><div class="page-heading"><div><div class="eyebrow">GESTIÓN DE CAMBIOS <span class="eyebrow-line"></span></div><h1 id="requests-title">Solicitudes<span class="period">.</span></h1><p>Revisá los cambios de horario antes de afectar reservas.</p></div></div><div class="section-intro"><span class="mini-count">02 PENDIENTES</span><p>Un cambio que afecte una reserva confirmada requiere resolver el impacto y contar con la aceptación del cliente.</p></div><div class="request-list" id="request-list"></div></section>
+
+      <section class="page" id="page-services" aria-labelledby="services-title"><div class="page-heading"><div><div class="eyebrow">CATÁLOGO <span class="eyebrow-line"></span></div><h1 id="services-title">Servicios<span class="period">.</span></h1><p>Las opciones que el negocio ofrece para reservar.</p></div></div><div class="section-intro"><span class="mini-count">CATÁLOGO DEMO</span><p>Los servicios archivados dejan de ofrecerse para nuevas reservas; las reservas históricas conservan su información.</p></div><div class="table-card"><div class="table-head"><span>Servicio</span><span>Duración</span><span>Profesionales</span><span>Estado</span></div><div id="service-list"></div></div></section>
+
+      <section class="page" id="page-team" aria-labelledby="team-title"><div class="page-heading"><div><div class="eyebrow">EQUIPO <span class="eyebrow-line"></span></div><h1 id="team-title">Profesionales<span class="period">.</span></h1><p>Una agenda individual para cada persona del equipo.</p></div></div><div class="section-intro"><span class="mini-count">03 PROFESIONALES</span><p>El administrador configura quién puede ver su agenda y solicitar cambios. «Todos los servicios» tiene prioridad sobre selecciones individuales.</p></div><div class="team-grid" id="team-list"></div></section>
+    </main>
+  </div>
+  <dialog id="modal" aria-labelledby="modal-title"><form method="dialog" id="dialog-form"><div class="modal-top"><div><div class="eyebrow">TURNO BOT · DEMO</div><h2 id="modal-title">Nueva reserva</h2></div><button type="button" class="close-button" id="close-modal" aria-label="Cerrar">×</button></div><div id="modal-body"></div><div class="modal-actions"><button class="secondary-button" type="button" id="cancel-modal">Cancelar</button><button class="primary-button" type="submit" id="confirm-modal">Guardar reserva</button></div></form></dialog>
+  <div role="status" aria-live="polite" class="toast" id="toast"></div>
+</body>
+</html>
